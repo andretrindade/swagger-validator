@@ -1,4 +1,3 @@
-import exp from "constants";
 import { TypeValidationRuleStrategy } from "../src/constants/TypeValidationRuleStrategy";
 import SwaggerValidatorService from "../src/services/SwaggerValidatorService";
 import SwaggerDereferencerService from "../src/services/SwaggerDereferencerService";
