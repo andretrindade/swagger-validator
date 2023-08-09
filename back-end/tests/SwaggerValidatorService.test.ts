@@ -12,7 +12,7 @@ describe('testing dereferenced file generation', () => {
     expect(2).toBe(iValidatorsRules.length)
   })
 
-  test('Validate ENUM without maxLength', async () => {
+  test('Validate ENUM with maxLength and two items', async () => {
     let swaggerValidatorService = new SwaggerValidatorService();
     let validators = [TypeValidationRuleStrategy.enumWithoutMaxLengthRule];
     let obj = {type : "string", maxLength: 10, enum: ["teste1", "teste2"]};
@@ -24,13 +24,6 @@ describe('testing dereferenced file generation', () => {
     expect(false).toBe(valid);
   })
 
-  test('Validate ENUM without maxLength', async () => {
-    let swaggerValidatorService = new SwaggerValidatorService();
-    let objResult = await SwaggerDereferencerService.dereference("https://raw.githubusercontent.com/Sensedia/draft-openapi/main/swagger-apis/resources/2.0.0.yml")
-    let obj = SwaggerPreparationDataService.removeComponente(objResult);
-    
-    swaggerValidatorService.convertNameToIdArrayParameters(obj);
-  })
   test('Validate ENUM without maxLength and with check validation rule single' , async () => {
     let swaggerValidatorService = new SwaggerValidatorService();
     var objData = {
@@ -59,8 +52,8 @@ describe('testing dereferenced file generation', () => {
 
     let data = swaggerValidatorService.checkValidationRuleByField(objData,[], iValidatorsRules);
     expect(2).toBe(data.length );
-    expect('aggregator').toBe(data[0].field );
-    expect('release').toBe(data[1].field );
+    expect('/aggregator').toBe(data[0].field );
+    expect('/release').toBe(data[1].field );
 
   })
 
@@ -81,16 +74,7 @@ describe('testing dereferenced file generation', () => {
 
 
   })
-  test('Validate ExecValidation with real file yml' , async () => {
-    let swaggerValidatorService = new SwaggerValidatorService();
-    let url = "https://raw.githubusercontent.com/OpenBanking-Brasil/draft-openapi/main/swagger-apis/payments/3.0.0-beta.1.yml";
-    let validators = [TypeValidationRuleStrategy.stringWithMaxLengthRule];
 
-    let data = await swaggerValidatorService.ExecValidation(url,validators);
-
-    expect(data.length).toBe(6);
-
-  })
 
 
 

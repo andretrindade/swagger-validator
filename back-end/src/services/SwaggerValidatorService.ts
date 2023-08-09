@@ -63,6 +63,11 @@ export default class SwaggerValidatorService {
             (x) => typeof value[x] == "object" && !Array.isArray(value[x])
           ).length != 0
         ) {
+          this.checkValidation(validators,
+            path,
+            field, 
+            value,
+            objResultList);
           path.push(field);
 
           objResultList.push(
@@ -70,23 +75,39 @@ export default class SwaggerValidatorService {
           );
           path.pop();
         } else {
-          validators.forEach((x) => {
-            if (!x.isValid(value)) {
-              let objResult: ValidationReportItemDTO = {
-                field: path.join("/") + "/" + field,
-                rule: x.getNameRule(),
-                descriptionError: x.getDescription(),
-                endPoint: "",
-              };
-
-              objResultList.push(objResult);
-            }
-          });
+          this.checkValidation(validators,
+            path,
+            field, 
+            value,
+            objResultList);
         }
       }
     });
     return objResultList;
   }
+
+  public checkValidation(
+    validators: IValidationRuleStrategy[],
+    path: string[],
+    field: string, 
+    value: object,
+    objResultList : ValidationReportItemDTO[]
+    ){
+
+    validators.forEach((x) => {
+      if (!x.isValid(value)) {
+        let objResult: ValidationReportItemDTO = {
+          field: path.join("/") + "/" + field,
+          rule: x.getNameRule(),
+          descriptionError: x.getDescription(),
+          endPoint: "",
+        };
+
+        objResultList.push(objResult);
+      }
+    });
+  }
+
 
   public CheckSwaggerValidation(body: any): boolean {
     let isValid = true;
