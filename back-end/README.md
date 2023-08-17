@@ -1,11 +1,8 @@
 # changeLogOpenAPI
-This repository provides a useful tool to generate change logs from OpenAPI specifications.
+This repository provides a useful tool to validation of swagger. 
+The main objective is validate the rules from Open Finance Brasil.
 
-The API does a deep comparison between two spec files to create a detailed  result that contains all the data needed to create the changelog.
-
-It also provides a way to customize the change message returned by passing a custom message template in the request body.
-
-
+Just put in the payload the url and validators that you want to validate.
 ## Setup project
 ```
 npm install
@@ -14,44 +11,27 @@ npm install
 ```
 npx ts-node index.ts
 ```
-## Execute the tests
-```
-npm test
-```
 
-## Generating changelog
+## Executing
 
 ```
-POST /change-log/generate-change-log
+POST /validation
 
 Request payload example:
 {
-    "urlOld": "https://raw.githubusercontent.com/Sensedia/draft-openapi/main/swagger-apis/resources/2.0.0.yml",
-    "urlCurrent": "https://raw.githubusercontent.com/Sensedia/draft-openapi/main/swagger-apis/resources/2.0.1.yml",
-    "templateDescription":{
-        "templateAdded": "Adicionado ${field}",
-        "templateEdited": "Alterado ${field}",
-        "templateRemoved": "Removido ${field}",
-        "templateRequired": "Alterado mandatoriedade"
-    }
+  "url" : "https://raw.githubusercontent.com/Sensedia/draft-openapi/aggr-opendata-accounts/swagger-apis/opendata-accounts/1.0.0-beta.1.yml",
+  "validators" : [1,2,3,4,5,6,7]
+
 }
-```
 
 ```
-Response example:
-{
-    "obj": {
-        "changesLog": [
-            {
-                "endpoint": "info",
-                "field": "version",
-                "description": "Alterado version",
-                "currentValue": "2.0.1",
-                "oldValue": "2.0.0",
-                "path": ""
-            }, 
-            {...}
-        ]
-    }
-}
-```
+## Validators
+
+#### 1 - String with property 'MaxLength'
+#### 2 - Enum without property 'MaxLength'
+#### 3 - String with property 'pattern' valid with property 'example'
+
+#### 4 - String with Pattern
+#### 5 - Array with 'MaxItem'
+#### 6 - String with property 'MinLength'
+#### 7 - Property 'pattern' without 'NA'

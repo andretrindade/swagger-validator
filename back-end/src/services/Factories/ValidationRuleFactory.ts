@@ -6,6 +6,7 @@ import StringWithMaxLengthRule from "../ValidationRuleStrategy/StringWithMaxLeng
 import StringWithPatternRule from "../ValidationRuleStrategy/StringWithPatternRule";
 import StringWithPatternValidWithExampleRule from "../ValidationRuleStrategy/StringWithPatternValidWithExampleRule";
 import ArrayWithMaxItemRule from "../ValidationRuleStrategy/ArrayWithMaxItemRule";
+import StringPatternWIthoutNARule from "../ValidationRuleStrategy/StringPatternWIthoutNARule";
 
 export default class ValidationRuleFactory{
 
@@ -18,7 +19,9 @@ export default class ValidationRuleFactory{
         dicValidationRuleStrategy[TypeValidationRuleStrategy.stringWithPatternValidWithExampleRule] = new StringWithPatternValidWithExampleRule();
         dicValidationRuleStrategy[TypeValidationRuleStrategy.arrayWithMaxItemRule] = new ArrayWithMaxItemRule();
         dicValidationRuleStrategy[TypeValidationRuleStrategy.stringWithMinLengthRule] = new StringWithMinLengthRule();
+        dicValidationRuleStrategy[TypeValidationRuleStrategy.stringPatternWIthoutNARule] = new StringPatternWIthoutNARule();
 
+        
         return dicValidationRuleStrategy;
     }
 
