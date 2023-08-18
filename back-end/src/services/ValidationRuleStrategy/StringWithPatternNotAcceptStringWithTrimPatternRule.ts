@@ -11,11 +11,8 @@ export default class StringWithPatternNotAcceptStringWithTrimPatternRule impleme
         let properties = Object.getOwnPropertyNames(obj).map(x=> x.toLocaleLowerCase());
         if(properties.includes("pattern")
             ){
-        console.log("1 - "+ obj.pattern.toLocaleLowerCase());
-        console.log("2 - "+this.pattern);
 
                 isValid = obj.pattern.toLocaleLowerCase() != this.pattern;
-                console.log("3 - "+isValid);
         
             }
 

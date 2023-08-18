@@ -8,6 +8,7 @@ import StringWithPatternValidWithExampleRule from "../ValidationRuleStrategy/Str
 import ArrayWithMaxItemRule from "../ValidationRuleStrategy/ArrayWithMaxItemRule";
 import StringPatternWIthoutNARule from "../ValidationRuleStrategy/StringPatternWIthoutNARule";
 import StringWithPatternNotAcceptStringWithTrimPatternRule from "../ValidationRuleStrategy/StringWithPatternNotAcceptStringWithTrimPatternRule";
+import ElementsInRequiredWithoutUsedRule from "../ValidationRuleStrategy/ElementsInRequiredWithoutUsedRule";
 
 export default class ValidationRuleFactory{
 
@@ -22,6 +23,7 @@ export default class ValidationRuleFactory{
         dicValidationRuleStrategy[TypeValidationRuleStrategy.stringWithMinLengthRule] = new StringWithMinLengthRule();
         dicValidationRuleStrategy[TypeValidationRuleStrategy.stringPatternWIthoutNARule] = new StringPatternWIthoutNARule();
         dicValidationRuleStrategy[TypeValidationRuleStrategy.stringWithPatternNotAcceptStringWithTrimPatternRule] = new StringWithPatternNotAcceptStringWithTrimPatternRule();
+        dicValidationRuleStrategy[TypeValidationRuleStrategy.elementsInRequiredWithoutUsedRule] = new ElementsInRequiredWithoutUsedRule();
         
         
         return dicValidationRuleStrategy;

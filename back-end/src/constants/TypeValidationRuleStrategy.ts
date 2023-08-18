@@ -6,5 +6,6 @@ export enum TypeValidationRuleStrategy{
    arrayWithMaxItemRule = 5,
    stringWithMinLengthRule = 6,
    stringPatternWIthoutNARule = 7,
-   stringWithPatternNotAcceptStringWithTrimPatternRule = 8
+   stringWithPatternNotAcceptStringWithTrimPatternRule = 8,
+   elementsInRequiredWithoutUsedRule= 9
 }

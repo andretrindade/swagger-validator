@@ -2,6 +2,6 @@ POST https://scaling-doodle-wq4r77r999rhpw6-5000.app.github.dev/validation
 content-type: application/json
 
 {
-  "url" : "https://raw.githubusercontent.com/OpenBanking-Brasil/openapi/main/swagger-apis/accounts/2.1.0-rc.1.yml",
-  "validators" : [8]
+  "url" : "https://raw.githubusercontent.com/Sensedia/draft-openapi/aggr-opendata-invoicefinancings/swagger-apis/opendata-invoicefinancings/1.0.0-beta.1.yml",
+  "validators" : [9]
 }
