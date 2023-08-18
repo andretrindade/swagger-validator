@@ -1,0 +1,7 @@
+POST https://scaling-doodle-wq4r77r999rhpw6-5000.app.github.dev/validation
+content-type: application/json
+
+{
+  "url" : "https://raw.githubusercontent.com/OpenBanking-Brasil/openapi/main/swagger-apis/accounts/2.1.0-rc.1.yml",
+  "validators" : [8]
+}
