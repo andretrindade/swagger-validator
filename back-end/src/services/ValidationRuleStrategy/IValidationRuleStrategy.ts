@@ -2,9 +2,9 @@ import { TypeValidationRuleStrategy } from "../../constants/TypeValidationRuleSt
 
 export default interface  IValidationRuleStrategy {
 
-    isValid(obj: any) : boolean;
+    isValid(obj: any, field:string) : boolean;
     getDescription(): string;
     getCodeEnum():TypeValidationRuleStrategy;
     getNameRule():string;
-
+    
 }

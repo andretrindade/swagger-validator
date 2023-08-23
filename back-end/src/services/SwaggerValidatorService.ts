@@ -95,7 +95,7 @@ export default class SwaggerValidatorService {
     ){
 
     validators.forEach((x) => {
-      if (!x.isValid(value)) {
+      if (!x.isValid(value, field)) {
         let objResult: ValidationReportItemDTO = {
           field: path.join("/") + "/" + field,
           rule: x.getNameRule(),
@@ -149,7 +149,7 @@ export default class SwaggerValidatorService {
   }
 
   public GetValidationRuleStrategy(rules: number[]): IValidationRuleStrategy[] {
-    let dictionaries = ValidationRuleFactory.GetValidationRuleDictionary();
+    let dictionaries = ValidationRuleFactory.buildDictionary();
     let iValidations = rules.map((x) => dictionaries[x]);
 
     return iValidations;

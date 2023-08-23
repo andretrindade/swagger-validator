@@ -9,27 +9,34 @@ import ArrayWithMaxItemRule from "../ValidationRuleStrategy/ArrayWithMaxItemRule
 import StringPatternWIthoutNARule from "../ValidationRuleStrategy/StringPatternWIthoutNARule";
 import StringWithPatternNotAcceptStringWithTrimPatternRule from "../ValidationRuleStrategy/StringWithPatternNotAcceptStringWithTrimPatternRule";
 import ElementsInRequiredWithoutUsedRule from "../ValidationRuleStrategy/ElementsInRequiredWithoutUsedRule";
+import PropertyCnpjRule from "../ValidationRuleStrategy/PropertyCnpjRule";
+import PropertyCpfRule from "../ValidationRuleStrategy/PropertyCpfRule";
 
 export default class ValidationRuleFactory{
 
 
-    public  static GetValidationRuleDictionary() {
-        let dicValidationRuleStrategy : { [id : number] : IValidationRuleStrategy; } = {};
-        dicValidationRuleStrategy[TypeValidationRuleStrategy.stringWithMaxLengthRule] = new StringWithMaxLengthRule();
-        dicValidationRuleStrategy[TypeValidationRuleStrategy.enumWithoutMaxLengthRule] = new EnumWithoutMaxLengthRule();
-        dicValidationRuleStrategy[TypeValidationRuleStrategy.stringWithPatternRule] = new StringWithPatternRule();
-        dicValidationRuleStrategy[TypeValidationRuleStrategy.stringWithPatternValidWithExampleRule] = new StringWithPatternValidWithExampleRule();
-        dicValidationRuleStrategy[TypeValidationRuleStrategy.arrayWithMaxItemRule] = new ArrayWithMaxItemRule();
-        dicValidationRuleStrategy[TypeValidationRuleStrategy.stringWithMinLengthRule] = new StringWithMinLengthRule();
-        dicValidationRuleStrategy[TypeValidationRuleStrategy.stringPatternWIthoutNARule] = new StringPatternWIthoutNARule();
-        dicValidationRuleStrategy[TypeValidationRuleStrategy.stringWithPatternNotAcceptStringWithTrimPatternRule] = new StringWithPatternNotAcceptStringWithTrimPatternRule();
-        dicValidationRuleStrategy[TypeValidationRuleStrategy.elementsInRequiredWithoutUsedRule] = new ElementsInRequiredWithoutUsedRule();
-        
-        
-        return dicValidationRuleStrategy;
+    public  static buildDictionary() {
+        let dicValidationRules : { [id : number] : IValidationRuleStrategy; } = {};
+
+        this.AddValidationRule(dicValidationRules,new StringWithMaxLengthRule());
+        this.AddValidationRule(dicValidationRules,new EnumWithoutMaxLengthRule());
+        this.AddValidationRule(dicValidationRules,new StringWithPatternRule());
+        this.AddValidationRule(dicValidationRules,new StringWithPatternValidWithExampleRule());
+        this.AddValidationRule(dicValidationRules,new ArrayWithMaxItemRule());
+        this.AddValidationRule(dicValidationRules,new StringWithMinLengthRule());
+        this.AddValidationRule(dicValidationRules,new StringPatternWIthoutNARule());
+        this.AddValidationRule(dicValidationRules,new StringWithPatternNotAcceptStringWithTrimPatternRule());
+        this.AddValidationRule(dicValidationRules,new ElementsInRequiredWithoutUsedRule());
+        this.AddValidationRule(dicValidationRules, new PropertyCnpjRule());
+        this.AddValidationRule(dicValidationRules, new PropertyCpfRule());
+        return dicValidationRules;
+    }
+
+    private static  AddValidationRule(dic : any, rule : IValidationRuleStrategy){
+        dic[rule.getCodeEnum()] = rule;
     }
 
     public  static GetValidationRuleByType(type: TypeValidationRuleStrategy):IValidationRuleStrategy {
-        return this.GetValidationRuleDictionary()[type];
+        return this.buildDictionary()[type];
     }
 }

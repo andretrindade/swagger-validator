@@ -30,8 +30,11 @@ Request payload example:
 #### 1 - String with property 'MaxLength'
 #### 2 - Enum without property 'MaxLength'
 #### 3 - String with property 'pattern' valid with property 'example'
-
 #### 4 - String with Pattern
 #### 5 - Array with 'MaxItem'
 #### 6 - String with property 'MinLength'
 #### 7 - Property 'pattern' without 'NA'
+#### 8 - String not accept text with trim on pattern
+#### 9 - Property in required without be used
+#### 10 - Property cnpj with pattern valid
+#### 11 - Property cpf with pattern valid
